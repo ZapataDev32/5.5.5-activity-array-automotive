@@ -1,9 +1,9 @@
 //this includes the vehicle class as a module
-import Vehicle from './vehicleBaseClass.js';
+// /import Vehicle from './vehicleBaseClass.js';
 
 //this shows how to call from this module...
-let v = new Vehicle("Mercury", "Sedan", "1965", "color", "mileage");
-console.log(v.make)
+// let v = new Vehicle("Mercury", "Sedan", "1965", "color", "mileage");
+// console.log(v.make)
 
 
 //After you write the derived Car class, you should test it out.
@@ -15,7 +15,66 @@ console.log(v.make)
 
 
 
+//  const VehicleModule = require("./vehicleBaseClass")
+  import  Vehicle  from "./vehicleBaseClass.js";
 
+class NewCarModule extends Vehicle{
+    constructor(make, model, year, color, mileage){
+        super(make, model, year, color, mileage);
+        this.maxPassengers = 5;
+        this.passenger = 0;
+        this.numberOfWheels = 4;
+        this.maxSpeed = 160;
+        this.fuel = 10;
+        this.scheduleService = false;
+    }
+
+    loadPassenger(num) {
+
+        this.passenger = num
+        if (num > this.maxPassengers){
+            console.log(`I am sorry but the ${this.model} + ${this.make} does not have enough space to take all passengers.`)
+        } else {
+            console.log(`the ${this.model} + ${this.make} is all set! off we go`)
+        }
+        
+
+    }
+
+    start(){
+        if (this.fuel > 0){
+            console.log(this.started)
+            console.log(" Let's drive off!")
+            this.started = true
+            console.log(this.started)
+        } else {
+            console.log("Bro we lost our family, our tank is at 0")
+        }
+
+    }
+    
+    service(mileage){
+        if (mileage > 30000){
+            this.scheduleService = true;
+        }
+
+    }
+
+}
+
+//this shows how to call from this module...
+// let v = new VehicleModule.Vehicle("Mercury", "Sedan", "1965", "color", "mileage");
+// console.log(v.make)
+
+
+const myCar = new NewCarModule('Toyota', 'camry',2022,'red',15000)
+// console.log(myCar.make)
+ myCar.start()
+ myCar.loadPassenger(3)
+ myCar.stop()
+ myCar.service(50000)
+
+console.log(myCar)
 
 
 
@@ -32,4 +91,6 @@ console.log(v.make)
 
 
 
-//Create at least two new instances of the Car class and test them here:
+// //Create at least two new instances of the Car class and test them here:
+//  let v = new Vehicle("Mercury", "Sedan", "1965", "color", "mileage");
+//  console.log(v.make)
